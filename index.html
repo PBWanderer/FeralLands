@@ -1,0 +1,146 @@
+<html dir="ltr"><head>
+        <title>Feral Wanderer WIP</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            button{
+                border: none;
+                border-radius:10px;
+                color: lightgray;
+                background-color:gray;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 15px;
+                margin: 3px 4px;
+                transition-duration: 0.4s;
+                width: 100px;
+                cursor: pointer;
+            }
+            .bottom{
+                float:left;
+                width:20%;
+                margin:3px 0px;
+            }
+            .quick{
+                margin: 1 auto;
+                width:92%;
+            }
+
+            div.bordered1{
+                float:left;
+                border-top-style: solid;
+                /*border-right-style: solid;*/
+                border-bottom-style: solid;
+                border-left-style: solid;
+                border-width:1px;
+            }
+            div.bordered2{
+                float:left;
+                border-left-style: solid;
+                border-width:1px;
+            }
+            div.side{
+                width:100px;
+                float:left;
+            }
+            div.center{
+                width:600px;
+                float:left;
+            }
+            div.main{
+                height:400px;
+                float:left;
+            }
+
+            span.important{}
+        </style>
+    </head>
+    <body> <!-- contenteditable="true" -->
+        <div id="TOP-ROW"> <!-- Home of some useless divs I guess. -->
+            <div id="topL" class="bordered1 side" style="height:30px">
+                asd
+            </div> 
+            <div id="topM" class="bordered1 center" style="height:30px">
+                fasd
+            </div>
+            <div id="topR" class="bordered1 side" style="height:30px;border-right-style:solid"> <!--Final center div can make use of custom border-right-style -->
+                right top
+            </div>
+        </div>
+        <br>
+
+        <div id="MAIN" style="margin-top:25px"> <!-- Home of stats, textout, and... Wait, am I using that last one? -->
+            <div id="stats" class="bordered1 side main" style="">
+                asd
+            </div>
+            <div id="mainM" class="bordered1 center main" style="">
+                afsd
+            </div>
+            <div id="mainR" class="bordered1 side main" style="border-right-style:solid">
+                asd
+            </div>
+        </div>
+
+        <div id="BOT-ROW-1"> <!-- Home of div-bag, bButtons1, and quickItem1 -->
+            <div id="div-bag" class="bordered2 side" style="height:26px">
+                <button id="next" class="quick">
+                    Inventory
+                </button>
+            </div>
+            <div id="bButtons1" class="bordered2 center" style="height:26px">
+                <button id="top1" class="bottom">
+                    top
+                </button>
+                <button id="top2" class="bottom">
+                    top
+                </button>
+                <button id="top3" class="bottom">
+                    top
+                </button>
+                <button id="top4" class="bottom">
+                    top
+                </button>
+                <button id="top5" class="bottom">
+                    top
+                </button>
+            </div>
+            <div id="quickItem1" class="bordered2 side" style="height:26px;border-right-style:solid">
+                <button id="quickItem1B"  class="quick">
+                    Quick1
+                </button>
+            </div>
+        </div>
+
+        <div id="BOT-ROW2"> <!-- Home of div-next, bButtons2, and quickItem2 -->
+            <div id="div-next" class="bordered2 side" style="height:26px;border-bottom-style:solid;">
+                <button id="next"  class="quick">
+                    Next<span style="font-weight:bold">...</span>
+                </button>
+            </div>
+            <div id="bButtons2" class="bordered2 center" style="height:26px;border-bottom-style:solid;">
+                <button id="bot1" class="bottom">
+                    bottom
+                </button>
+                <button id="bot2" class="bottom">
+                    bottom
+                </button>
+                <button id="bot3" class="bottom">
+                    bottom
+                </button>
+                <button id="bot4" class="bottom">
+                    bottom
+                </button>
+                <button id="bot5" class="bottom">
+                    bottom
+                </button>
+            </div>
+            <div id="quickItem2" class="bordered2 side" style="height:26px;border-right-style:solid;border-bottom-style:solid;">
+                <button id="quickItem2B"  class="quick">
+                    Quick2
+                </button>
+            </div>
+        </div>
+
+    </body></html>
