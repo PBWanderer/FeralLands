@@ -6,7 +6,7 @@ This is a ripoff of Corruption of Champions, but with original code, a new setti
 
 By being programmed as an HTML5/Javascript game, it will be easily accessible through a simple internet browser while still being quick and incredibly flexible.
 
-Major fetishes to be added will be pregnancy, birth, incest, and ferals. All at the same time? If you want to, sure.
+Major fetishes to be expanded upon will be pregnancy, birth, and incest. Ferals will also be added. All of that stuff at the same time? If you want to, sure.
 
 Gameplay will be a little different as well. You may keep two companions with you to assist in combat (and obscenity), as well as a distance system to account for when choosing your weapons.
 
