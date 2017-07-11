@@ -4,4 +4,6 @@
  * and open the template in the editor.
  */
 
-
+function output(text) {
+    document.getElementById("textout").write(text);
+}
