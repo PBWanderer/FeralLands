@@ -3,143 +3,107 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <style>
-            button{
-                border: none;
-                border-radius:10px;
-                color: lightgray;
-                background-color:gray;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 15px;
-                margin: 3px 4px;
-                transition-duration: 0.4s;
-                width: 100px;
-                cursor: pointer;
-            }
-            .bottom{
-                float:left;
-                width:20%;
-                margin:3px 0px;
-            }
-          .quick{
-          		width:90%;
-          	}
-
-            div.bordered1{
-                float:left;
-                border-top-style: solid;
-                /*border-right-style: solid;*/
-                border-bottom-style: solid;
-                border-left-style: solid;
-                border-width:1px;
-            }
-            div.bordered2{
-                float:left;
-                border-left-style: solid;
-                border-width:1px;
-            }
-            div.side{
-                width:100px;
-                float:left;
-            }
-            div.center{
-                width:600px;
-                float:left;
-            }
-            div.main{
-                height:400px;
-                float:left;
-            }
-
-            span.important{}
-        </style>
+        <link rel="stylesheet" href="main-style.css">
     </head>
-    <body> <!-- contenteditable="true" -->
-        <div id="TOP-ROW"> <!-- Home of some useless divs I guess. -->
-            <div id="topL" class="bordered1 side" style="height:30px">
-                asd
-            </div> 
-            <div id="topM" class="bordered1 center" style="height:30px">
-                fasd
+    <body>
+        <div style="">
+            <div id="TOP-ROW" class="wrapper" style="border-radius:30px;"> <!-- Home of some useless divs I guess. -->
+                <div id="topL" class="side" style="text-align:center;height:30px;">
+                    <span style="color:#119;font-size:26px;padding:0px;">♦ ♦ ♦ ♦ ♦</span>
+                </div> 
+                <div id="topM" class="center" style="height:30px;border-right-style:solid;border-left-style:solid;border-width:1px">
+                    <div class="padtext" style="margin-top:6px">topM</div>
+                </div>
+                <div id="topR" class="side" style="height:30px;"> <!--Final center div can make use of custom border-right-style -->
+                    <div class="padtext" style="margin-top:6px">topR</div>
+                </div>
             </div>
-            <div id="topR" class="bordered1 side" style="height:30px;border-right-style:solid"> <!--Final center div can make use of custom border-right-style -->
-                right top
-            </div>
-        </div>
-        <br>
-        
-        <div id="MAIN" style="margin-top:25px"> <!-- Home of stats, textout, and... Wait, am I using that last one? -->
-            <div id="stats" class="bordered1 side main" style="">
-                asd
-            </div>
-            <div id="mainM" class="bordered1 center main" style="">
-                afsd
-            </div>
-            <div id="mainR" class="bordered1 side main" style="border-right-style:solid">
-                asd
-            </div>
-        </div>
 
-        <div id="BOT-ROW-1"> <!-- Home of div-bag, bButtons1, and quickItem1 -->
-            <div id="div-bag" class="bordered2 side" align="center" style="height:26px">
-                <button id="bag" class="quick">
-                    Inventory
-                </button>
+            <div id="MAIN" class="wrapper" style="margin-top:25px;"> <!-- Home of stats, textout, and... Wait, am I using that last one? -->
+                <div id="stats" class="side main">
+                    <div class="padtext" style="margin-top:3px">
+                        Stats
+                    </div>
+                </div>
+                <div id="mainM" class="center main" style="overflow-y:auto;">
+                    <div class="padtext">
+                        MainM
+                    </div>
+                </div>
+                <div id="mainR" class="side main">
+                    <div class="padtext" style="margin-top:3px">
+                        MainR
+                    </div>
+                    <div id="altDiv1" class="padtext">AltDiv1</div>
+                </div>
             </div>
-            <div id="bButtons1" class="bordered2 center" style="height:26px">
-                <button id="top1" class="bottom">
-                    top
-                </button>
-                <button id="top2" class="bottom">
-                    top
-                </button>
-                <button id="top3" class="bottom">
-                    top
-                </button>
-                <button id="top4" class="bottom">
-                    top
-                </button>
-                <button id="top5" class="bottom">
-                    top
-                </button>
+            
+            <!-- The furtive tooltip, so easily forgotten -->
+            <div style="padding:2px;text-align:center;border-radius:10px;background-color:#ccc;clear:left;">
+                <span id="tooltip" style="font-family:sans-serif;font-size:15px;">JS Tooltip</span>
             </div>
-            <div id="quickItem1" class="bordered2 side" align="center" style="height:26px;border-right-style:solid">
-                <button id="quickItem1B"  class="quick">
-                    Quick1
-                </button>
+            
+            
+            <div id="botbar" class="wrapper" style="margin-top:0px;">
+                <div id="BOT-ROW-1" style="margin:auto;text-align:center;"> <!-- Home of div-bag, bButtons1, and quickItem1 -->
+                    <div id="div-bag" class="side" align="center" style="height:26px">
+                        <button id="bag" class="quick" style="border-top-left-radius:10px;">
+                            Inventory
+                        </button>
+                    </div>
+                    <div id="bButtons1" class="center" style="height:26px">
+                        <button id="top1" class="bottom">
+                            top
+                        </button>
+                        <button id="top2" class="bottom">
+                            top
+                        </button>
+                        <button id="top3" class="bottom">
+                            top
+                        </button>
+                        <button id="top4" class="bottom">
+                            top
+                        </button>
+                        <button id="top5" class="bottom">
+                            top
+                        </button>
+                    </div>
+                    <div id="quickItem1" class="side" align="center" style="height:26px;">
+                        <button id="quickItem1B" class="quick" style="border-top-right-radius:10px;">
+                            Quick1
+                        </button>
+                    </div>
+                </div>
+
+                <div id="BOT-ROW-2" style="margin:auto;text-align:center;"> <!-- Home of div-next, bButtons2, and quickItem2 -->
+                    <div id="div-next" class="side" style="height:26px;">
+                        <button id="next" class="quick" style="border-bottom-left-radius:10px;">
+                            Next<span style="font-weight:bold">...</span>
+                        </button>
+                    </div>
+                    <div id="bButtons2" class="center" style="height:26px;">
+                        <button id="bot1" class="bottom">
+                            bottom
+                        </button>
+                        <button id="bot2" class="bottom">
+                            bottom
+                        </button>
+                        <button id="bot3" class="bottom">
+                            bottom
+                        </button>
+                        <button id="bot4" class="bottom">
+                            bottom
+                        </button>
+                        <button id="bot5" class="bottom">
+                            bottom
+                        </button>
+                    </div>
+                    <div id="quickItem2" class="side" align="center" style="height:26px">
+                        <button id="quickItem2B" class="quick" style="border-bottom-right-radius:10px;">
+                            Quick2
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div id="BOT-ROW2"> <!-- Home of div-next, bButtons2, and quickItem2 -->
-            <div id="div-next" class="bordered2 side" align="center" style="height:26px;border-bottom-style:solid;">
-                <button id="next"  class="quick">
-                  	Next<span style="font-weight:bold">...</span>
-                </button>
-            </div>
-            <div id="bButtons2" class="bordered2 center" style="height:26px;border-bottom-style:solid;">
-                <button id="bot1" class="bottom">
-                    bottom
-                </button>
-                <button id="bot2" class="bottom">
-                    bottom
-                </button>
-                <button id="bot3" class="bottom">
-                    bottom
-                </button>
-                <button id="bot4" class="bottom">
-                    bottom
-                </button>
-                <button id="bot5" class="bottom">
-                    bottom
-                </button>
-            </div>
-            <div id="quickItem2" class="bordered2 side" align="center" style="height:26px;border-right-style:solid;border-bottom-style:solid;">
-                <button id="quickItem2B"  class="quick">
-                    Quick2
-                </button>
-            </div>
-        </div>
-
     </body></html>
