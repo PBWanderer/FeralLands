@@ -1,5 +1,7 @@
 /* 
- * Class that handles all player input.
+ * Class that handles generally all player input.
+ * Input is sent back to the appropriate scripts via Events.
+ * Add the inputs in new screens to this script. Dropdowns, file system, etc.
  */
 
 // Receive clicks from all the main buttons
