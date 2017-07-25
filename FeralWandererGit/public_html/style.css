@@ -1,0 +1,112 @@
+/* 
+    Created on : Jul 24, 2017, 9:51:58 AM
+    Warning: Bad css ahead. Proceed at your own risk
+*/
+
+html{
+    background: #123;
+}
+body{
+    background: #eee;
+    width: 804px;
+    height:525px;
+    margin:auto;
+    margin-top:3%;
+    padding:2%;
+    font-family:sans-serif;
+    font-size:15px;
+}
+
+p{
+    margin: 0px 3px 0px 3px;
+    text-indent: 20px;
+}
+
+button{
+    border:solid;
+    border-color:#555;
+    border-width:2px;
+    color: lightgray;
+    background-color:gray;
+    margin-top:2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    transition-duration: 0.4s;
+    width: 100px;
+    cursor: pointer;
+}
+button.bottom{
+    width:19.15%;
+}
+button.quick{
+    width:90%;
+}
+button.topbutton{
+    border-radius:30px;
+    width:60px;
+    height:24px;
+    float:right;
+    margin:0px 1px;
+    margin-top:2px;
+}
+button.flair{
+    border-radius:30px;
+    width:auto;
+    height:24px;
+    float:left;
+    margin:0px 3px;
+    margin-top:2px; /*For some reason this is necessary, even though it should actually be redundant... */
+    border:none;
+    border-width:2px;
+    color: black;
+    background-color:lightgray;
+}
+
+div.container{
+    float:left;
+    clear:left;
+    border:solid;
+    border-width:1px;
+    border-color: black;
+    border-radius:10px;
+    width:804px;
+}
+div.writing{
+    font-family:serif;
+    font-size:16px;
+    
+}
+div.pad{
+    margin:3px;
+}
+div.side{
+    width:100px;
+    float:left;
+}
+div.tall{
+    height:400px;
+    float:left;
+}
+div.center{
+    width:600px;
+    float:left;
+    border-left:solid;
+    border-right:solid;
+    border-width:1px;
+}
+div.botrow{
+    height:27px;
+}
+
+span.important{ /* For alerts */
+
+}
+span.stonewrapper{
+    font-size:27px;
+}
+span.stone{
+    color:#11a;
+    padding:0px;
+}
