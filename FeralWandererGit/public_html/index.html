@@ -2,39 +2,55 @@
         <title>Feral Wanderer WIP</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Warning: Bad HTML ahead. Proceed at your own risk -->
 
-        <link rel="stylesheet" href="main-style.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div style="">
-            <div id="TOP-ROW" class="wrapper" style="border-radius:30px;"> <!-- Home of some useless divs I guess. -->
-                <div id="topL" class="side" style="text-align:center;height:30px;">
-                    <span style="color:#119;font-size:26px;padding:0px;">♦ ♦ ♦ ♦ ♦</span>
+            <div id="TOP-ROW" class="container" style="width:804px;height:34px;border-radius:30px;"> <!-- Home of some useless divs I guess. -->
+                <div id="topL" class="side" style="display:none;
+                     border-right:solid; border-right-width:1px; text-align:center;height:34px;">
+                    <span class="stonewrapper" style="">
+                        <span id="form1" class="stone">♦</span> <span id="form2" class="stone">♦</span> <span id="form3" class="stone">♦</span> <span id="form4" class="stone">♦</span> <span id="form5" class="stone">♦</span>
+                    </span>
                 </div> 
-                <div id="topM" class="center" style="height:30px;border-right-style:solid;border-left-style:solid;border-width:1px">
-                    <div class="padtext" style="margin-top:6px">topM</div>
-                </div>
-                <div id="topR" class="side" style="height:30px;"> <!--Final center div can make use of custom border-right-style -->
-                    <div class="padtext" style="margin-top:6px">topR</div>
+                <div id="topM" class="" style="margin-left:0px; margin-right:0px; height:34px;width:100%;">
+                    <div class="pad" style="">
+                        <button id="player_flair" class="flair" style="">TopM, the Anthro Hrose</button>
+                        <button id="prefs" class="topbutton">Prefs</button>
+                        <button id="about" class="topbutton">About</button>
+                        <button id="load" class="topbutton">Load</button>
+                        <button id="save" class="topbutton">Save</button>
+                    </div>
                 </div>
             </div>
-
-            <div id="MAIN" class="wrapper" style="margin-top:25px;"> <!-- Home of stats, textout, and... Wait, am I using that last one? -->
-                <div id="stats" class="side main">
-                    <div class="padtext" style="margin-top:3px">
+            
+            <div style="visibility: hidden; width: 125px; padding: 5px;
+                 text-align:center;border-radius:10px;background-color:#000;float:left;clear:left;
+                 color: white; font-family:sans-serif;font-size:15px;">
+                <span id="stonemenu" style="">JS</span>
+            </div>
+            
+            <div id="MAIN" class="writing container" style="margin-top:0px;"> <!-- Home of stats, textout, and a sub bar. -->
+                <div id="stats" class="side tall">
+                    <div class="pad" style="margin-top:3px">
                         Stats
                     </div>
                 </div>
-                <div id="mainM" class="center main" style="overflow-y:auto;">
-                    <div class="padtext">
-                        MainM
+                <div id="mainM" class="center tall" style="overflow-y:auto;border-right:none;">
+                    <div id="writepad" class="pad" style="">
+                        <p>MainM</p>
                     </div>
                 </div>
-                <div id="mainR" class="side main">
-                    <div class="padtext" style="margin-top:3px">
-                        MainR
+                <div id="mainRContainer" class="side tall" style=" border-left:solid;border-width:1px;">
+                    <div id="mainR" class="pad">
+                        <div id="mainSub" class="" style=" margin-top:3px">
+                            MainR
+                        </div>
+                        <div id="altDiv1" class="" style="display:none;">AltDiv1</div>
                     </div>
-                    <div id="altDiv1" class="padtext">AltDiv1</div>
                 </div>
             </div>
             
@@ -44,14 +60,14 @@
             </div>
             
             
-            <div id="botbar" class="wrapper" style="margin-top:0px;">
-                <div id="BOT-ROW-1" style="margin:auto;text-align:center;"> <!-- Home of div-bag, bButtons1, and quickItem1 -->
-                    <div id="div-bag" class="side" align="center" style="height:26px">
+            <div id="botbar" class="container" style="margin-top:0px;">
+                
+                <div id="BOT-ROW-1" style="float:left;clear:left;text-align:center;height:21px;margin-top:0px;"> <!-- Home of div-bag, bButtons1, and quickItem1 -->
+                    <div id="div-bag" class="side botrow" align="center" style="">
                         <button id="bag" class="quick" style="border-top-left-radius:10px;">
                             Inventory
                         </button>
-                    </div>
-                    <div id="bButtons1" class="center" style="height:26px">
+                    </div><div id="bButtons1" class="center botrow" style="">
                         <button id="top1" class="bottom">
                             top
                         </button>
@@ -68,20 +84,20 @@
                             top
                         </button>
                     </div>
-                    <div id="quickItem1" class="side" align="center" style="height:26px;">
+                    <div id="quickItem1" class="side botrow" align="center" style="">
                         <button id="quickItem1B" class="quick" style="border-top-right-radius:10px;">
                             Quick1
                         </button>
                     </div>
                 </div>
 
-                <div id="BOT-ROW-2" style="margin:auto;text-align:center;"> <!-- Home of div-next, bButtons2, and quickItem2 -->
-                    <div id="div-next" class="side" style="height:26px;">
+                <div id="BOT-ROW-2" style="float:left;clear:left;text-align:center;height:27px;margin-top:4px;"><!-- Home of div-next, bButtons2, and quickItem2 -->
+                    <div id="div-next" class="side botrow" style="">
                         <button id="next" class="quick" style="border-bottom-left-radius:10px;">
                             Next<span style="font-weight:bold">...</span>
                         </button>
                     </div>
-                    <div id="bButtons2" class="center" style="height:26px;">
+                    <div id="bButtons2" class="center botrow" style="">
                         <button id="bot1" class="bottom">
                             bottom
                         </button>
@@ -98,7 +114,7 @@
                             bottom
                         </button>
                     </div>
-                    <div id="quickItem2" class="side" align="center" style="height:26px">
+                    <div id="quickItem2" class="side botrow" align="center" style="">
                         <button id="quickItem2B" class="quick" style="border-bottom-right-radius:10px;">
                             Quick2
                         </button>
