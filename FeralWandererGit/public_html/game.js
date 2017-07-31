@@ -13,6 +13,19 @@
  * 
  */
 
+/*
+ * QUICK SELF NOTE:
+ * Buttons can cancel screens, allow a full round-trip Update to occur (GS/UI),
+ * and perform combat/conversation actions (World/Player/tempRAM)
+ * Combat screen is background-layered and history transparency'd while right screen shows combat log + a show-historylog-on-hover-object
+ * Combat/Converse doesn't -officially- update any World/Player actions until done, so technically it all counts as GS/UI?
+ * If so, then maybe GS/UI should be handle them? Or just relegate that crap to other scripts that are also loaded in?
+ * Would have to write the code in a special way to make everything become official upon Combat.js end.
+ * 
+ * Hover over button or Keypress button once to preview target. Click or Keypress same button to attack. Shift+Keypress to cancel target.
+ */
+
+
 function output(text) {
     document.getElementById("textout").write(text);
 }

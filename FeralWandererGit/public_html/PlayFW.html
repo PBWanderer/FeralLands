@@ -18,7 +18,7 @@
                 </div> 
                 <div id="topM" class="" style="margin-left:0px; margin-right:0px; height:34px;width:100%;">
                     <div class="pad" style="">
-                        <button id="player_flair" class="flair" style="">TopM, the Anthro Hrose</button>
+                        <button id="player_flair" class="flair" style="">player_flair</button>
                         <button id="prefs" class="topbutton">Prefs</button>
                         <button id="about" class="topbutton">About</button>
                         <button id="load" class="topbutton">Load</button>
@@ -39,9 +39,9 @@
             </div>
             
             <div id="MAIN" class="writing container" style="margin-top:0px;"> <!-- Home of stats, textout, and a sub bar. -->
-                <div id="stats" class="side tall">
-                    <div class="pad" style="margin-top:3px">
-                        Stats
+                <div class="side tall">
+                    <div id="stats" class="pad" style="margin-top:3px">
+                        Stats<br/>Stats continued
                     </div>
                 </div>
                 <div id="mainM" class="center tall" style="overflow-y:auto;border-right:none;">
@@ -89,8 +89,8 @@
                             top
                         </button>
                     </div>
-                    <div id="quickItem1" class="side botrow" align="center" style="">
-                        <button id="quickItem1B" class="quick" style="border-top-right-radius:10px;">
+                    <div class="side botrow" align="center" style="">
+                        <button id="quickItem1" class="quick" style="border-top-right-radius:10px;">
                             Quick1
                         </button>
                     </div>
@@ -98,8 +98,8 @@
 
                 <div id="BOT-ROW-2" style="float:left;clear:left;text-align:center;height:27px;margin-top:4px;"><!-- Home of div-next, bButtons2, and quickItem2 -->
                     <div id="div-next" class="side botrow" style="">
-                        <button id="next" class="quick" style="border-bottom-left-radius:10px;">
-                            Next<span style="font-weight:bold">...</span>
+                        <button id="ok" class="quick" style="border-bottom-left-radius:10px;">
+                            Okay<span style="font-weight:bold">...</span>
                         </button>
                     </div>
                     <div id="bButtons2" class="center botrow" style="">
@@ -119,12 +119,19 @@
                             bottom
                         </button>
                     </div>
-                    <div id="quickItem2" class="side botrow" align="center" style="">
-                        <button id="quickItem2B" class="quick" style="border-bottom-right-radius:10px;">
+                    <div class="side botrow" align="center" style="">
+                        <button id="quickItem2" class="quick" style="border-bottom-right-radius:10px;">
                             Quick2
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Scripts begin -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Offline version requires local jquery. -->
+        <!--<script src="js/libs/jquery/jquery.min.js"></script>-->
+        
+        <!-- Game scripts to be loaded in -->
+        <script src="game.js"></script>
     </body></html>

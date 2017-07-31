@@ -5,5 +5,23 @@
         <data xmlns="http://www.netbeans.org/ns/clientside-project/1">
             <name>FeralWandererGit</name>
         </data>
+        <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1">
+            <library name="jquery" version="3.2.1">
+                <file localPath="public_html/js/libs/jquery/core.js" path="core.js"/>
+                <file localPath="public_html/js/libs/jquery/jquery.js" path="jquery.js"/>
+                <file localPath="public_html/js/libs/jquery/jquery.min.js" path="jquery.min.js"/>
+                <file localPath="public_html/js/libs/jquery/jquery.min.map" path="jquery.min.map"/>
+                <file localPath="public_html/js/libs/jquery/jquery.slim.js" path="jquery.slim.js"/>
+                <file localPath="public_html/js/libs/jquery/jquery.slim.min.js" path="jquery.slim.min.js"/>
+                <file localPath="public_html/js/libs/jquery/jquery.slim.min.map" path="jquery.slim.min.map"/>
+            </library>
+            <library name="jquery-autocomplete" version="1.0.7">
+                <file localPath="public_html/js/libs/jquery-autocomplete/jquery.auto-complete.css" path="jquery.auto-complete.css"/>
+                <file localPath="public_html/js/libs/jquery-autocomplete/jquery.auto-complete.js" path="jquery.auto-complete.js"/>
+                <file localPath="public_html/js/libs/jquery-autocomplete/jquery.auto-complete.min.css" path="jquery.auto-complete.min.css"/>
+                <file localPath="public_html/js/libs/jquery-autocomplete/jquery.auto-complete.min.css.map" path="jquery.auto-complete.min.css.map"/>
+                <file localPath="public_html/js/libs/jquery-autocomplete/jquery.auto-complete.min.js" path="jquery.auto-complete.min.js"/>
+            </library>
+        </libraries>
     </configuration>
 </project>

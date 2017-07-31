@@ -8,6 +8,7 @@ html{
 }
 body{
     background: #eee;
+    border-radius:20px;
     width: 804px;
     height:525px;
     margin:auto;
