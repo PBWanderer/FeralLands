@@ -36,8 +36,13 @@ var pad = $("#writepad"); // https://stackoverflow.com/questions/1300242/
 
 var engine = { // Namespacing to tidy up anonymous functions.
     MAX_PARAGRAPHS: 30,
-    TEST1: function(){ writepad("TEST "); },
-    BUTTON1: function() { newbutton("Noice!", UI.mid3, "", engine.TEST1); }
+    TEST1: function(){ writepad("TEST"); }, // Unfortunately I can't make this output pad.children.length until I get more INT. lmao
+    BUTTON1: function() { newbutton("Noice!", UI.mid3, "", engine.TEST1); },
+    ROWTEST: function() { engine.TEST1();
+        $.each(UI.botrow, function(index, value) {
+        index+=1;
+        newbutton("Bot "+index, value, "", engine.TEST1);
+    }); }
 };
 
 // The functions below are deliberately on the global namespace.
@@ -46,8 +51,9 @@ var engine = { // Namespacing to tidy up anonymous functions.
  * @param {string} text - The arg for appended text is automatically wrapped in a <p>.
  */
 function writepad(text) {
-    pad.append("<p>" + text + pad.children().length + "</p>");
-    if (pad.children().length > engine.MAX_PARAGRAPHS) {
+    pad.append("<p>" + text + "</p>");
+    
+    if (pad.children().length+1 > engine.MAX_PARAGRAPHS) {
         pad.children().first().remove();
     };
     pad.scrollTop(pad.prop('scrollHeight'));
@@ -78,8 +84,9 @@ function promptreset(text, FUNC) {
  * @returns {b|window.$|$} - Returns the DOM button that was modified.
  */
 function newbutton(label, but, tooltip, FUNC) { // Can't pass an indefinite number of FUNC args right now. Not enough INT for me to write THAT yet.
-    but.text(label);
-    but.click(FUNC);
+    resetbutton(but);
+    $(but).text(label);
+    $(but).click(FUNC);
     //writepad(label+tooltip+but.text());
     return but;
 }
@@ -103,6 +110,24 @@ function clearallbuttons() {
     });
 }
 
+/*Tooltipper functionality:
+ * Pairs itself with the various buttons.
+ * Ugh... How does that pairing happen, if not with arrays or dicts?
+ * Let's start from the top: the buttons.
+ * When hovering over _BUT (mid1), display mid's _TIP
+ * The newbutton constructor accesses the _??? to change _BUT's _TIP.
+ * 
+ * TooltipHoverManager listens to all the hover events of each and every button.
+ * It pairs the buttons by... Actually, just do the two arrays thing. Ugh.
+ * newbutton passes the but and tooltip to TTHM and they get paired then.
+ * resetbutton also calls TTHM. When you construct, make sure to destruct.
+ */
+
 $(document).ready(function(){
-    newbutton("FFFFFFFFFFFFFFFFFFFFFFF", UI.top2, "", engine.TEST1);
+    
+    newbutton("FFFFFFFFFFFFFFFFFFFFFFF", UI.top2, "YEAH", engine.ROWTEST);
+    // Messy, game-specific code begin. Add event listeners...
+    $.each(UI.mainbuttons, function(index, value) { writepad(""+index); $(value).hover(function(){ buttonhover(index); }, UI.resethover); });
+    // Messy, game-specific code end.
+    // TODO: Move this code into the game.js of FW. Make it so that the Engine's ready function is what loads that UI function!
 });
