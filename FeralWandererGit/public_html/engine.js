@@ -32,9 +32,7 @@
  * Also, something involving Events... Eugh. I suppose making buttons lead to Event functions is a thing...
  */
 
-var pad = $("#writepad");
-
-// https://stackoverflow.com/questions/1300242/
+var pad = $("#writepad"); // https://stackoverflow.com/questions/1300242/
 
 var engine = { // Namespacing to tidy up anonymous functions.
     MAX_PARAGRAPHS: 30,
@@ -43,8 +41,6 @@ var engine = { // Namespacing to tidy up anonymous functions.
 };
 
 // The functions below are deliberately on the global namespace.
-
-
 /**
  * Writes in another line to the game.
  * @param {string} text - The arg for appended text is automatically wrapped in a <p>.
@@ -108,5 +104,5 @@ function clearallbuttons() {
 }
 
 $(document).ready(function(){
-    
+    newbutton("FFFFFFFFFFFFFFFFFFFFFFF", UI.top2, "", engine.TEST1);
 });
