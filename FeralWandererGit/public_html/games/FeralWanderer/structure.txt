@@ -1,0 +1,20 @@
+Un-scatter your thoughts already and fix this all up, me!
+
+Modules holds various things used for your game's particular programming.
+This can include intricate body systems, combat systems, and whatever else your game can come up with.
+
+Data holds all things that need to be saved.
+World flags, player character, inventory, allies, fam,
+Subfolders: NPCs, player, eventdata
+'npcs' contains the data on ally party members and the fam. 'player' contains their character data and inventory.
+'eventdata' holds world flags and various NPC character flags.
+
+Graphics holds just that - .jpg or .png files that can enhance the game experience.
+
+World holds everything related to the game world.
+Items, characters, areas, and how to interact with all of them.
+Subfolders: areas, characters, events.
+'areas' contains area data as well as an ugly little master file for item data. 'characters' holds NPC data for spawning them in.
+'events' contains, of course, event data. Since areas use event pools, events can be separated.
+
+(note: program events to have several different conditions that allow them to never be encountered, depending on world flags)
