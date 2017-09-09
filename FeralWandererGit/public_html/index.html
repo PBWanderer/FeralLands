@@ -8,17 +8,31 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div id="ageoverlay" class="ageoverlay">
+            <div style="width:75%; height:75%;
+            margin: 0 auto; text-align:center; margin-top:10%;">
+                <h6>This web page contains an ADULT game depicting purely fictional characters and situations.<br>
+                    By proceeding to this web page, you are confirming that you are of legal age (18 years) to view ADULT CONTENT.<br><br>
+                    Furthermore, this web page may save data to your device for the sake of convenience.<br>
+                    Proceeding also means that you consent to cookies and manually-saved game data.</h6>
+                <script src="consentbuttons.js"></script>
+            <button class="consentoverlaybutton" style="background-color: #242;" onclick="removeoverlay()">Agree (I am over 18)</button> 
+            <button class="consentoverlaybutton" style="background-color: #422;" onclick="declinedoverlay()">Decline and leave</button>
+            </div>
+        </div>
+        
+        
         <div style="background: #eee;
     border-radius:25px;
     width: 804px;
-    height:565px;
+    height:595px;
     margin:auto;
     margin-top:60px;
-    padding:40px;">
+    padding:12px 30px 42px 30px;">
             <div id="enginebuttons" class="" style="border-bottom: none;
                  width:33%; padding-top: 3px; ">
 
-                <div class="pad" style="">
+                <div class="pad" style="position: fixed; margin-left: 13px; margin-top: 0px">
                     <button id="prefs" class="topbutton">Prefs</button>
                     <button id="about" class="topbutton">About</button>
                     <button id="load" class="topbutton">Load</button>
@@ -30,12 +44,13 @@
                  text-align:center; width:33%; margin:0 auto; float:none; height:25px;">
                 <span style="position:absolute;margin-left:auto;margin-right:auto;left:0;right:0;
                 font-size: 16px; margin-top:4px;">
-                    PressButton Text Game Framework</span>
+                    PressButton Quest Framework</span>
             </div>
             
             
             <div id="TOP-ROW" class="container" style="width:804px;height:30px;border-radius:30px;"> <!-- Home of some useless divs I guess. -->
                 <div id="location" class="writing" style="float:left;margin:5px;margin-left:8px; font-size:18px">Location, the Town</div>
+                
                 <div id="topM" class="" style="margin-left:0px; margin-right:8px; height:30px;width:100%;">
                     <span class="stonewrapper" style="float:right; padding-right: 18px;">
                         <span id="form1" class="stone">♦</span> <span id="form2" class="stone">♦</span> <span id="form3" class="stone">♦</span> <span id="form4" class="stone">♦</span> <span id="form5" class="stone">♦</span>
@@ -56,12 +71,13 @@
             <div id="MAIN" class="writing container" style="margin-top:2px;"> <!-- Home of stats, textout, and a sub bar. -->
                 <div class="side tall">
                     <div id="stats" class="pad" style="margin-top:3px">
-                        Stats<br/>Stats continued
+                        <span id="time">11:59 PM</span><br>Stats
                     </div>
                 </div>
-                <div id="mainM" class="center tall" style="overflow-y:auto;border-right:none;">
-                    <div id="writepad" class="pad" style="">
-                        <p>writepad</p>
+                <div id="mainM" class="center tall" style="border-right:none;">
+                    <div id="writepad" class="pad" style="width:100%; height: 397px; overflow:auto;">
+                        <p>Welcome to the PressButton Quest™ Game Framework™. There is currently only one game available right now, so this page should be automatically loading it up right now.</p>
+                        <p>If the PressButton Quest™ Game™ Framework™™ doesn't function properly, you may need to upgrade to the latest browser.</p>
                     </div>
                 </div>
                 <div id="mainRContainer" class="side tall" style=" border-left:solid;border-width:1px;">
@@ -89,7 +105,7 @@
                         </button>
                     </div><div id="bButtons1" class="center botrow" style="">
                         <button id="top1" class="bottom">
-                            top
+                            top1
                         </button>
                         <button id="top2" class="bottom">
                             top
@@ -170,7 +186,10 @@
                     </div>
                 </div>
             </div>
+            <div style="text-align: center; clear:left; padding-top: 10px;">asd</div>
         </div>
+        
+        
         <!-- Scripts begin -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!-- Offline version requires local jquery. -->
