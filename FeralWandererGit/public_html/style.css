@@ -32,7 +32,8 @@ p{
 
 button{
     overflow: hidden;
-    outline: none;
+    outline-style: none;
+    white-space:nowrap;
     border:solid;
     border-color:#555;
     border-width:2px;
@@ -47,6 +48,7 @@ button{
     height:23px;
     width: 100px;
     cursor: pointer;
+    vertical-align:text-top;
 }
 button.consentoverlaybutton{
     width:20%;

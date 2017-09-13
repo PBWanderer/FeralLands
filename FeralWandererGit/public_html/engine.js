@@ -34,6 +34,8 @@
 var pad = $("#writepad"); // https://stackoverflow.com/questions/1300242/
 
 window.engine = window.engine || { // Namespacing to tidy up anonymous functions.
+    GAME_FOLDER: "games/",
+    
     MAX_PARAGRAPHS: 30,
     LAST_BUTTON: "" + $("#save").attr("id"), // Hacky solution...
     BUTTON_BACKGROUND: "gray",
@@ -139,6 +141,18 @@ function clearallbuttons() {
  */
 
 $(document).ready(function(){
+    $.ajax({
+        url: engine.GAME_FOLDER,
+        success: function (data) {
+        writepad("wat");
+            $(data).find("a").attr("href", function (i, val) {
+                if (val.match(/\/$/)) {
+                    writepad("WOAH " + val + " RADICAL");
+                }
+            });
+        }
+    });
+    
     // Messy, game-specific code begin. Add event listeners...
     $.each(UI.mainbuttons, function(index, button) {
         btn = $(button);

@@ -3,3 +3,6 @@
  */
 
 
+$(document).ready(function(){
+    writepad("Feral Wanderer loaded.");
+});

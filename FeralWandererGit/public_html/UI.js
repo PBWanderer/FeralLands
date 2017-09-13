@@ -1,4 +1,4 @@
-/* 
+/* global engine
  * Class that handles player input and buttons.
  * Input is sent back to the appropriate scripts via events.
  * Add the inputs in new screens to this script. Dropdowns, file system, etc.
