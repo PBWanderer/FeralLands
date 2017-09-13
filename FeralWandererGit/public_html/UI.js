@@ -5,6 +5,12 @@
  */
 
 window.UI = window.UI || {
+    no_highlight_tap: false,
+    
+    
+    
+    
+    
     // Define all the main buttons
     // Yes, copypaste coding is bad, but it's just a prank, bro.
     // top row of bottom bars
@@ -39,10 +45,10 @@ window.UI = window.UI || {
         "TIPmid1", "TIPmid2", "TIPmid3", "TIPmid4", "TIPmid5",
         "TIPbot1", "TIPbot2", "TIPbot3", "TIPbot4", "TIPbot5"],
     // If I want to extend to the other buttons, make an otherbuttons and othertips pair of arrays...
-    mainshortcuts:
-        ["Shift+1", "Shift+2", "Shift+3", "Shift+4", "Shift+5",
-        "Shift+Q", "Shift+W", "Shift+E", "Shift+R", "Shift+T",
-        "Shift+A", "Shift+S", "Shift+D", "Shift+F", "Shift+G"],
+    mainshortcuts: // actual shortcut system will implement this for REAL; currently a temporary test
+        ["1", "2", "3", "4", "5",
+        "Q", "W", "E", "R", "T",
+        "A", "S", "D", "F", "G"],
     
     // left bottom bar
     canc: $("#cancel"),
@@ -77,8 +83,7 @@ window.UI = window.UI || {
         flair:""},
      */
     
-    resethover: function(button){
-        button.tooltip = "";
+    resethover: function(){
         UI.shorttip.text("");
         UI.itemdesc.text("");
     }
@@ -88,17 +93,41 @@ window.UI = window.UI || {
     
 };
 
-
-
 /**
- * Specifies what happens on hover. Makes the text appear.
- * @param {type} index - Used for the array match. Really messy.
- * @returns {undefined}
+ * Called on when using keyboard shortcuts.
+ * @param {function} FUNC - The function that the called button will perform.
+ * @param {button} button - The button being interacted with.
  */
-function buttonhover(index) {
-    UI.shorttip.text(UI.mainshortcuts[index]);
-    UI.itemdesc.text(UI.maintips[index]);
+function tap(FUNC, button) {
+    if (UI.no_highlight_tap) { // If Highlight Tap is OFF, just execute the function.
+        FUNC();
+        
+    } else { // Highlight Tap is ON
+        btn = $(button);
+        last = engine.LAST_BUTTON;
+        
+        // Hacky solution begin...
+        btnID = ""+btn.attr("id");
+        engine.LAST_BUTTON = ""+btn.attr("id");
+        $("#"+last).css("background", engine.BUTTON_BACKGROUND);
+        // Hacky solution end...
+        
+        //writepad("Highlight Tap Test | Last: "+last+" | Current: " +engine.LAST_BUTTON);
+        
+        if(last === btnID){ // Begin the check for 
+            FUNC();
+            btn.css("background", engine.BUTTON_BACKGROUND);
+        } else {
+            UI.shorttip.text(btn.data("shorttip"));
+            UI.itemdesc.text(btn.data("desc"));
+            //writepad("changing button highlight...");
+            btn.css("background", "red");
+        }
+    }
 }
+
+
+
 
 // What about custom dropdowns? Actually, I should create another 'screen' (div) that pops up for lists... Since that's static, it's fine.
 //TODO: Create that new div. If we really need it, that is... The end engine should be flexible enough to create lists w/o the new div.
