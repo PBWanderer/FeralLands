@@ -36,11 +36,11 @@ window.engine = window.engine || { // Namespacing to tidy up anonymous functions
     
     
     TEST1: function(){ writepad("TEST"); }, // Unfortunately I can't make this output $pad.children.length until I get more INT. lmao
-    BUTTON1: function() { newbutton("Noice!", UI.mid3, "", engine.TEST1); },
+    BUTTON1: function() { newbutton("Noice!", "!ecioN", UI.mid3, engine.TEST1); },
     ROWTEST: function() { engine.TEST1();
         $.each(UI.botrow, function(index, value) {
         index++;
-        newbutton("ROWTEST Bot "+index, value, "ROWTEST "+index, engine.TEST1);
+        newbutton("ROWTEST Bot "+index, "ROWTEST "+index, value, engine.TEST1);
     }); },
     ERRORBLANK: function() { blankpad("ERROR: Somebody forgot to insert a function! Please report this bug in detail. Thank you."); }
 };
@@ -70,15 +70,18 @@ function writepad(text) {
  * @param {string} FUNC - A string of a function. Must not contain "()" as that's included already.
  * @returns {b|window.$|$} - Returns the DOM button that was modified.
  */ // Should I add in an optional one for defining the Shortcut Tooltip hover?
-function newbutton(label, $button, tooltip, FUNC) { // Can't pass an indefinite number of FUNC args right now. Not enough INT for me to write THAT yet.
+function newbutton(label, tooltip, $button, FUNC) { // Can't pass an indefinite number of FUNC args right now. Not enough INT for me to write THAT yet.
+    
+    
     resetbutton($button);
     $btn = $($button);
     $btn.text(label);
     $btn.on("click", FUNC);
     $btn.data("desc", tooltip);
     $btn.data("shorttip", $btn.data("shortorig") + ": " + label);
-    //writepad(label+tooltip+$btn.text());
-    return $btn;
+    
+    
+    return $btn; // return FUNCTION() would grant old functionality... Hm...
 }
 // TODO for promptreset: Make the default function into one that generates the generic environment buttons or such.
 /** 
@@ -89,7 +92,7 @@ function newbutton(label, $button, tooltip, FUNC) { // Can't pass an indefinite 
 function promptreset(FUNC=engine.ERRORBLANK, text="Game text and buttons cleared.") {
     // Create a button prompt for Next, which deletes everything in exchange for our argument...
     clearallbuttons();
-    newbutton("Next", UI.top1, "Press 1 or Spacebar to continue.", function () {
+    newbutton("Next", "Press 1 or Spacebar to continue.", UI.top1, function () {
         clearallbuttons();
         blankpad(text);
         FUNC();
@@ -132,15 +135,34 @@ function clearallbuttons() {
 
 //</editor-fold>
 
-// TODO: Make the Time and Encounter objects the same as the Pool object.
 
+//<editor-fold defaultstate="collapsed" desc="Player">
+
+/* Player Object does...
+ * EVERYTHING. The player is meant to interact with EVERYTHING
+ * Yeah, defining this bastard is going to take absolutely forever. In fact, we'll need a separate file for him.
+ * 
+ * The way to progress that's been working so far is to only work on what's currently RELEVANT.
+ * Current relevant thing: Make Areas work. So now, we'll try and make the Player exist so that Areas can exist.
+ * What's needed for the Player to work? A CurrentArea object local to the Player.
+ * 
+ * Some other nice things would be... Fuck, just anything.
+ * Make sure to separate engine.js Player from game.js Player for when other games want to be made. This includes the Body shtick.
+ * 
+ * Only after we have the Player, Area, and Inventory should we work on side-buttons and Save/Load/etc.!
+ */
+
+//</editor-fold>
+
+// TODO: Make the Time and Encounter objects the same as the Pool object.
+// TODO: TimeAction. But I have no actions to perform that require time yet!
 //<editor-fold defaultstate="collapsed" desc="Time">
 function TIME(mins=0) {
     if ( isNaN(mins) ) { console.log("TIME: constructor: Attempted to pass NaN. Minutes set to 0."); this.minutes = 0;}
     else { this.minutes = Math.max(mins, 0); }
-}
-TIME.prototype = {
-    addMin(mins) {
+    
+    
+    this.addMin = function(mins) {
         if ( isNaN(mins) ) {
             console.log("TIME: addMin: Attempted to pass NaN. Added minimum minutes ("+engine.MINUMUM_TIME_INCREMENT+").");
             this.minutes += engine.MINUMUM_TIME_INCREMENT;
@@ -149,14 +171,14 @@ TIME.prototype = {
     },
     
     //<editor-fold defaultstate="collapsed" desc="Time variants">
-    inHours() { return Math.floor(  this.minutes / 60); },
-    inDays() { return Math.floor(   this.inHours() / 24); },
-    inMonths(){ return Math.floor(  this.inDays() / 30); },
-    inYears(){ return Math.floor (  this.inMonths() / 12 ); },
-    inDecades(){ return Math.floor (  this.inYears() / 10 ); },
+    this.inHours = function() { return Math.floor(      this.minutes / 60); },
+    this.inDays = function() { return Math.floor(       this.inHours() / 24); },
+    this.inMonths = function(){ return Math.floor(      this.inDays() / 30); },
+    this.inYears = function(){ return Math.floor (      this.inMonths() / 12 ); },
+    this.inDecades = function(){ return Math.floor (    this.inYears() / 10 ); },
     //</editor-fold>
     
-    readableTime() {
+    this.readableTime = function() {
         subYears = this.inYears()   - Math.floor( this.inDecades() * 10 );
         subMonths = this.inMonths() - Math.floor( this.inYears() * 12 );
         subDays = this.inDays()     - Math.floor( this.inMonths() * 30 );
@@ -180,7 +202,6 @@ TIME.prototype = {
 var time = new TIME();
 //</editor-fold>
 
-// TODO: TimeAction. But I have no actions to perform that require time yet!
 
 //<editor-fold defaultstate="collapsed" desc="Game Functions">
 
@@ -207,6 +228,21 @@ function randomInt(min, max) {
     }
     return array;
 } // */
+
+//</editor-fold>
+
+
+//<editor-fold defaultstate="collapsed" desc="Encounter Pool System">
+
+// EVENT: makeEvent(name, tag, weight, availableFUNC, actionFUNC)
+// if ( eventpool[index].isAvailable() ) { } // IF the event  returns true, then
+// ALT: Change the event's Weight value when conditions are met. That way, a GetAvailable check isn't necessary.
+// Any other Encounter System things needed? The Weighted RNG system, the Encounter Pool system...
+
+// Encounter Pools are simply lists of Encounters that are associated with Travel.
+// 
+// What differentiates an Encounter from a fancy button? Not much - the Encounter encapsulation is just convenient.
+
 /**
  * Enumeration namespace for Encounter Tags.
  * @type Window.eTag
@@ -217,15 +253,6 @@ window.eTag = window.eTag || {
     ITEM: 2,
     TRAP: 3 // lol
 };
-
-// EVENT: makeEvent(name, tag, weight, availableFUNC, actionFUNC)
-// if ( eventpool[index].isAvailable() ) { } // IF the event  returns true, then
-// ALT: Change the event's Weight value when conditions are met. That way, a GetAvailable check isn't necessary.
-// Any other Encounter System things needed? The Weighted RNG system, the Encounter Pool system...
-
-// Encounter Pools are simply lists of Encounters that are associated with Travel.
-// 
-// What differentiates an Encounter from a fancy button? Not much - the Encounter encapsulation is just convenient.
 
 /**
  * The all-important Encounter system is used for random in-game events. Encounters are typically found when travelling through Encounter Pools.
@@ -240,21 +267,25 @@ function Encounter(ID, tag, weight, actionFUNC=engine.ERRORBLANK ) {
     this.tag = tag;
     this.weight = weight;
     this.FUNC = actionFUNC;
-    return this;
-}
-Encounter.prototype = {
-    weightChange(newval) {
+    
+    this.weightChange = function(newval) {
         if ( isNaN(newval) ) {
             console.log("Encounter " +this.ID+ ": weightChange: Attempted to pass NaN.");
         } else {
             this.weight = newval;
         }
-    },
-    oneshot() { // shoutouts to niko
+    };
+            
+            
+    this.oneshot = function() { // shoutouts to niko
         this.weight = 0; // Alternative: Make the Event destroy itself. Might be complex, especially with removing itself from all Lists...
         return this.FUNC(); // Parantheses means that the function tries to fire immediately. Without this, you'd need to write Encounter.oneshot()()
-    }
-};
+    };
+    
+    return this;
+}
+
+
 /**
  * A custom class for holding and handling Encounters. It has Get Encounter and Add Encounter functions.
  * @returns {Pool}
@@ -289,7 +320,6 @@ function Pool(){
     };
     
     
-    
     this.getEnc = function() {
         me = this.list;
         
@@ -303,10 +333,10 @@ function Pool(){
         }; // For Pool weight troubles */
         
         threshold = randomInt(1, 100); // We're using a 100% scale, and 0-100 is 101 numbers, thus we want 1-100.
-        tally = 1; // Tally should be the threshold's minimum number.
-        index = -1; // This starts at -1 for convenience, since we perform index++ immediately.
+        tally = 0;
+        index = -1; // This starts at -1 for convenience, since we perform index++; immediately.
         
-        do { // do..while executes at LEAST once. This is desirable.
+        do { // do..while executes at least once. This is desirable.
             index++;
             if (index === me.length) {
                 console.log("Pool: getEnc: An index loop was necessary. This may be intentional. Max: " +this.max()+".");
@@ -319,13 +349,54 @@ function Pool(){
         
         return me[index].FUNC;
     };
-}
-Pool.prototype = {
     
-};
+    return this;
+}
 
 //</editor-fold>
 
+
+//<editor-fold defaultstate="collapsed" desc="Area & Travel System">
+
+/* Among the things I want Travelling to do, I want it to...
+ * 
+ * Change the Area Flair on the screen
+ * Describe to the player what's going on in this place
+ * Present the player an array of useful buttons (Interact with NPC, Go to Area)
+ * 
+ * 
+ * player.travelto(city.plaza); // No extra exemptions for this travel call
+ * The CurrentArea changes, and lots of functions get called, including whatever Encounter Pool is associated.
+ * 
+ * 
+ * An area must generate buttons based on what's given to it.
+ * Connections, NPCs, items, other choice-involving things, instant-interactions...
+ * Also, I'd like for it to be visually representable, so some form of logic really has to show... Ugh. That's way later.
+ * How about a mere Position and Graphic?
+ * In fact, I should create my own GraphicalObject thingamajig to handle all of that for me... No! Stop! Later!
+ */
+
+/* new Area(tooltip)
+ * new Area()
+ * new Area()...
+ * Area.connect(area)
+ * Area.connect(area)...
+ * 
+ * 
+ * TravelHover, YouArrived, Look, Flair
+ * These basic strings show up when hovering over a button that travels there, when arriving, pressing Look, and in the Area Flair
+ * List[entities] is a bunch of disgusting newbutton()s.
+ * 
+*/ 
+
+
+// Area.connect(area, DIR tip1=FUNC_A, tip2=FUNC_B, traveltime=1, connectType=1, hideType=0)
+// 
+// DIR: dir.north/south/etc. with the Connect function checking if that spot hasn't been used yet
+// connectType 0: One-way | 1: Both ways
+// hideType 0: Not hidden | 1: Hidden until entered | 2?: Always hidden?
+
+//</editor-fold>
 // Definitions end.
 
 
@@ -338,7 +409,6 @@ $(document).ready(function(){
     // Stupid testing area begin...
     time.addMin(61);
     writepad( time.readableTime() );
-    
     
     
     // Stupid testing area end...    

@@ -20,15 +20,14 @@ $(document).ready(function(){
     
     // Messy, game-specific code end.
     
-    WAT = function() { newbutton("FFFFFFFFFFFFFFFFFFFFFFF", UI.top2, "YEAH", engine.ROWTEST); };
+    WAT = function() { newbutton("FFFFFFFFFFFFFFFFFFFFFFF", "YEAH", UI.top2, engine.ROWTEST); };
     // TalkToNPC = func() {  promptreset("You speak to NPC.") btnHello() btnGoodbye()  }
     WAT();
-    newbutton("Erase Buttons", UI.top5, "Erases all buttons, including this one. Ouch!", function(){
-        promptreset(WAT);
-    });
+    newbutton("Erase Buttons", "Erases all buttons, including this one. Ouch!", UI.top5, function(){ promptreset(WAT); });
     
+    newbutton("Pool Test", "e1=30, e2=50, e3=20", UI.mid4, WHY );
     
-    newbutton("Pool Test", UI.mid4, "Seriously, I fucked up?", WHY );
+    newbutton("WTF?", "This is painful to think about", UI.mid1, engine.TEST1);
     
     // TODO: Move this code into the game.js of FW.
 });
