@@ -5,7 +5,7 @@
  */
 
 window.UI = window.UI || {
-    no_highlight_tap: false,
+    no_highlight_tap: false, // TODO: This is totally a user option. Figure out how to fix this... Maybe make it an Engine thing.
     
     
     
@@ -86,8 +86,27 @@ window.UI = window.UI || {
     resethover: function(){
         UI.shorttip.text("");
         UI.itemdesc.text("");
-    }
-        
+    },
+    
+    initializeTooltips: function() {
+    $.each(UI.mainbuttons, function(index, button) {
+        btn = $(button);
+        writepad(""+index);
+        _ = UI.mainshortcuts[index];
+        btn.data("shorttip", _);
+        btn.data("shortorig", _);
+        index++;
+        btn.data("desc", ""+index);
+        btn.hover(
+            function() {
+                UI.shorttip.text($(this).data("shorttip"));
+                UI.itemdesc.text($(this).data("desc"));
+            },
+            UI.resethover
+        );
+    });}
+
+    
     
     // Time change func, flexible stat change func, 
     
@@ -99,6 +118,7 @@ window.UI = window.UI || {
  * @param {button} button - The button being interacted with.
  */
 function tap(FUNC, button) {
+    // HOW TO USE: "BUTTON.on("click", function(){ tap(FUNC, $(this));});"
     if (UI.no_highlight_tap) { // If Highlight Tap is OFF, just execute the function.
         FUNC();
         
