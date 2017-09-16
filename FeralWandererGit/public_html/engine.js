@@ -68,20 +68,25 @@ function writepad(text) {
  * @param {string} $button - The interactive button to use. Usually comes from the UI namespace.
  * @param {string} tooltip - What displays when you hover over the button.
  * @param {string} FUNC - A string of a function. Must not contain "()" as that's included already.
+ * @param {boolean} execute - If true, the button is immediately placed. If false, the newbutton stays as an Object.
  * @returns {b|window.$|$} - Returns the DOM button that was modified.
  */ // Should I add in an optional one for defining the Shortcut Tooltip hover?
-function newbutton(label, tooltip, $button, FUNC) { // Can't pass an indefinite number of FUNC args right now. Not enough INT for me to write THAT yet.
+function newbutton(label, tooltip, $button, FUNC, execute=true) { // Can't pass an indefinite number of FUNC args right now. Not enough INT for me to write THAT yet.
+    // get tooltip ...
+    // set tooltip { change $button.data(tooltip, newtip) }; ...
+    // etc. with all other variables
     
-    
+    // function place( UIposition ) {
     resetbutton($button);
     $btn = $($button);
     $btn.text(label);
     $btn.on("click", FUNC);
     $btn.data("desc", tooltip);
     $btn.data("shorttip", $btn.data("shortorig") + ": " + label);
+        // return $btn;
+    // }
     
-    
-    return $btn; // return FUNCTION() would grant old functionality... Hm...
+    return $btn; // return UIposition() would grant old functionality... Hm...
 }
 // TODO for promptreset: Make the default function into one that generates the generic environment buttons or such.
 /** 
@@ -135,22 +140,12 @@ function clearallbuttons() {
 
 //</editor-fold>
 
+//<editor-fold defaultstate="collapsed" desc="foo">
+//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Player">
 
-/* Player Object does...
- * EVERYTHING. The player is meant to interact with EVERYTHING
- * Yeah, defining this bastard is going to take absolutely forever. In fact, we'll need a separate file for him.
- * 
- * The way to progress that's been working so far is to only work on what's currently RELEVANT.
- * Current relevant thing: Make Areas work. So now, we'll try and make the Player exist so that Areas can exist.
- * What's needed for the Player to work? A CurrentArea object local to the Player.
- * 
- * Some other nice things would be... Fuck, just anything.
- * Make sure to separate engine.js Player from game.js Player for when other games want to be made. This includes the Body shtick.
- * 
- * Only after we have the Player, Area, and Inventory should we work on side-buttons and Save/Load/etc.!
- */
+
 
 //</editor-fold>
 
@@ -357,6 +352,31 @@ function Pool(){
 
 
 //<editor-fold defaultstate="collapsed" desc="Area & Travel System">
+
+function Area(flair, look, travelHover, arrive=false) {
+    
+    
+    /**
+     * This is called when a Player arrives to an Area. Argument 
+     * @param {type} input - Either a String or Function.
+     */
+    this.onArrive = function(input=false) {
+        if (input === "false") {  } // No operation
+        if (typeof input === "string") { writepad(input); }
+        if (typeof input === "function") { input();
+        } else { console.log("Area: onArrive: Passed non-string and non-function"); }
+    };
+    
+    // this.dangerlook = false; // No Encounters are rolled during Look
+    this.look = function() {
+        /*if (this.dangerlook) {
+            writepad(input);
+        }//*/
+        
+    };
+}
+
+
 
 /* Among the things I want Travelling to do, I want it to...
  * 
