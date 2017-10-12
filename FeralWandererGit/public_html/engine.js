@@ -45,109 +45,52 @@ window.engine = window.engine || { // Namespacing to tidy up anonymous functions
     ERRORBLANK: function() { blankpad("ERROR: Somebody forgot to insert a function! Please report this bug in detail. Thank you."); }
 };
 
-// The functions below are deliberately on the global namespace.
-//<editor-fold defaultstate="collapsed" desc="Basic Writing Functions">
-/**
- * Writes in another line to the game.
- * @param {string} text - The arg for appended text is automatically wrapped in a <p>.
- */
-function writepad(text) {
-    $pad.append("<p>" + text + "</p>");
-    
-    if ($pad.children().length+1 > engine.MAX_PARAGRAPHS) {
-        $pad.children().first().remove(); // First is assumed to be the top. First can be ANY sort of element.
-    };
-    $pad.scrollTop($pad.prop('scrollHeight'));
-    // NOTE: Writepad will remove ANY element it sees.
-    // So be cautious when attempting to use interactive elements under "writepad".
-}
-
-/**
- * Creates a new game button, complete with a label, tooltip, and custom function.
- * @param {string} label - The label that goes on a button.
- * @param {string} $button - The interactive button to use. Usually comes from the UI namespace.
- * @param {string} tooltip - What displays when you hover over the button.
- * @param {string} FUNC - A string of a function. Must not contain "()" as that's included already.
- * @param {boolean} execute - If true, the button is immediately placed. If false, the newbutton stays as an Object.
- * @returns {b|window.$|$} - Returns the DOM button that was modified.
- */ // Should I add in an optional one for defining the Shortcut Tooltip hover?
-function newbutton(label, tooltip, $button, FUNC, execute=true) { // Can't pass an indefinite number of FUNC args right now. Not enough INT for me to write THAT yet.
-    // get tooltip ...
-    // set tooltip { change $button.data(tooltip, newtip) }; ...
-    // etc. with all other variables
-    
-    // function place( UIposition ) {
-    resetbutton($button);
-    $btn = $($button);
-    $btn.text(label);
-    $btn.on("click", FUNC);
-    $btn.data("desc", tooltip);
-    $btn.data("shorttip", $btn.data("shortorig") + ": " + label);
-        // return $btn;
-    // }
-    
-    return $btn; // return UIposition() would grant old functionality... Hm...
-}
-// TODO for promptreset: Make the default function into one that generates the generic environment buttons or such.
-/** 
- * Clears everything with a button prompt.
- * @param {string} text - The arg for replacement text is automatically wrapped in a <p>.
- * @param {function} FUNC - The function that executes after the Next prompt.
- */
-function promptreset(FUNC=engine.ERRORBLANK, text="Game text and buttons cleared.") {
-    // Create a button prompt for Next, which deletes everything in exchange for our argument...
-    clearallbuttons();
-    newbutton("Next", "Press 1 or Spacebar to continue.", UI.top1, function () {
-        clearallbuttons();
-        blankpad(text);
-        FUNC();
-    });
-    // TODO: Add some funky arg that allows you to create more buttons after Next.
-}
-
-/**
- * Blanks the writepad, leaving behind a <paragraph>.
- * @param {type} text - Optional text that appears after the prompt reset.
- */
-function blankpad(text="") {
-    $pad.html("<p>" + text + "</p>");
-}
-
-/**
- * Resets a button's label, click event, and tooltip.
- * @param {button} $button - The button that will be reset.
- */
-function resetbutton($button) { // Tooltips need to be added eventually.
-    $btn = $($button);
-    $btn.text("");
-    $btn.off("click");
-    $btn.data("desc", "");
-    $btn.data("shorttip", $btn.data("shortorig"));
-}
-
-/**
- * Destroys all main buttons. Please use in conjunction with creating new buttons so that the player is never stuck in limbo.
- * @returns {undefined}
- */
-function clearallbuttons() {
-    $.each(UI.mainbuttons, function(index, $value){
-        //writepad(index+": "+value.id);
-        resetbutton($value);
-    });
-}
-
-
-
-//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="foo">
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Player">
 
+// Inventory, basic Stats... JSON compatibility, extendability...
+
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc="Gamestate Management">
+
+window.newstate = window.newstate || {
+    title: function() {
+        // TODO: Generic title screen presentation
+    },
+    area: function(json) {
+        // TODO: Actually, we need interpreting power! Place some interpret functions around for .json!
+    },
+    shop: function(json) {
+        // TODO: Creates a different way of displaying options, messing with the UI
+    },
+    fight: function(json) {
+        // TODO: 
+    },
+    talk: function(json) {
+        // TODO: 
+    },
+    any: function(json) {
+        // Experimental interpreter function where anything goes?!
+    }
+};
+
+/**
+ * 
+ * @param {type} newstate
+ * @returns {undefined}
+ */
+function restate(newstate) {
+    // transition into the new state...
+}
+
 
 
 //</editor-fold>
+
 
 // TODO: Make the Time and Encounter objects the same as the Pool object.
 // TODO: TimeAction. But I have no actions to perform that require time yet!
@@ -198,7 +141,20 @@ var time = new TIME();
 //</editor-fold>
 
 
-//<editor-fold defaultstate="collapsed" desc="Game Functions">
+//<editor-fold defaultstate="collapsed" desc="Savestate & Flags">
+
+
+
+
+
+//</editor-fold>
+
+
+//<editor-fold defaultstate="collapsed" desc="Quest Tracking">
+//</editor-fold>
+
+
+//<editor-fold defaultstate="collapsed" desc="Generic Game Functions">
 
 /**
  * Returns a random Integer between min and max. Both inclusive.
