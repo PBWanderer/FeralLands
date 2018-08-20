@@ -1,6 +1,6 @@
 Furry ERP bullshit: Now with ferals.
 
-# About Feral Wanderer
+# About Feral Lands
 
 This is a ripoff of Corruption of Champions, but with original code, a new setting, and different ideas.
 
